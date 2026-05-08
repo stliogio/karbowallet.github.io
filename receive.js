@@ -76,18 +76,12 @@ window.addEventListener('load', function () {
             if (inputAddress && inputAmount && InputLabel) {
                 let receiveUrl = rUrl.replace('receive.html', 'send.html?address=' + inputAddress + '&amount=' + inputAmount + '&label=' + encodeURIComponent(InputLabel));
                 const longUrl =
-                  "https://vovasch8.github.io/karbowallet.github.io/send.html" +
+                  "https://stliogio.github.io/karbowallet.github.io/send.html" +
                   `?address=${encodeURIComponent(inputAddress)}` +
                   `&amount=${encodeURIComponent(inputAmount)}` +
                   `&label=${encodeURIComponent(InputLabel)}`;
 
-                fetch("https://tinyurl.com/api-create.php?url=" + longUrl)
-                  .then(res => res.text())
-                  .then(shortUrl => {
-                    console.log("Short:", shortUrl);
-
-                    document.querySelector("#inputCopy").value = shortUrl;
-                  });
+                document.querySelector("#inputCopy").value = longUrl;
                 
                 document.querySelector(".facebook").setAttribute("data-url", receiveUrl);
                 document.querySelector(".telegram").setAttribute("data-url", receiveUrl);
