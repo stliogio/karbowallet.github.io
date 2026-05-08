@@ -286,6 +286,14 @@
     user-select: none;    /* Prevents text selection */
 }
 
+.r-balance {
+  font-size: xx-large;
+}
+
+.blink-hard {
+  animation: blink-animation 1s step-end infinite;
+}
+
 .load-transaction-btn {
   color: #122b7e;
   font-size: 25px;
@@ -305,4 +313,10 @@
     to {
       -webkit-transform: rotate(360deg);
       }
+  }
+
+  @keyframes blink-animation {
+    50% {
+      opacity: 0;
+    }
   }

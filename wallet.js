@@ -35,6 +35,24 @@ window.addEventListener('load', function () {
         });
     }
   
+    // Load balance
+    function reloadBalance(x_token) {
+      const xhr11 = new XMLHttpRequest();
+          xhr11.open("GET", "https://workerbalance.vovasch8.workers.dev/wallet/balance", true);
+          xhr11.setRequestHeader("X-Auth-Session", x_token);
+          xhr11.onload = () => {
+            resBalance = JSON.parse(xhr11.responseText);
+            document.querySelector("#balance").textContent = ((resBalance.available / 1000000000000) + (resBalance.locked / 1000000000000)).toFixed(4);
+            if (resBalance.locked !== 0) {
+              document.querySelector(".locked-balance").textContent = (resBalance.locked / 1000000000000).toFixed(4);
+              document.querySelector(".blockchaine-message").style.display = "block";
+            } else {
+              document.querySelector(".blockchaine-message").style.display = "none";
+            }
+          };
+          xhr11.send();
+    }
+  
     // Function Load Transactions
     function putTransactions(rTransactions, countClick) {
       const step = 3;
@@ -79,10 +97,31 @@ window.addEventListener('load', function () {
           xhr3.setRequestHeader("X-Auth-Session", x_auth_session);
           xhr3.onload = () => {
             resBalance = JSON.parse(xhr3.responseText);
-            document.querySelector("#balance").textContent = ((resBalance.available / 1000000000000)).toFixed(4);
+            document.querySelector("#balance").textContent = ((resBalance.available / 1000000000000) + (resBalance.locked / 1000000000000)).toFixed(4);
             document.querySelector("#wallet-adress").textContent = resBalance.address;
+            if (resBalance.locked === 0) {
+              document.querySelector(".blockchaine-message").style.display = "none";
+            } else {
+              document.querySelector(".locked-balance").textContent = (resBalance.locked / 1000000000000).toFixed(4);
+            }
           };
           xhr3.send();
+      
+        // Reload balance
+        document.querySelector(".r-balance").addEventListener("click", function() {
+            const element = document.querySelector('.r-balance');
+
+            reloadBalance(x_auth_session);
+            element.animate([
+              { transform: 'rotate(0deg)' },
+              { transform: 'rotate(360deg)' }
+            ], {
+              duration: 1000,     // 2 seconds
+              iterations: 2, // Loop 2
+              easing: 'linear'    // Constant speed
+            });
+        });
+        // Reload balance
       
         // Get transactions
         const xhr4 = new XMLHttpRequest();
