@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Karbo Wallet</title>
+  <link rel="icon" href="img/icon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  
+  <div id="preloader">
+      <img src="img/logo%20StlioGio.png" alt="StlioGio Logo" id="loaderLogo">
+  </div>
+
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+     <div class="main-container">
+      <section id="wallet">
+        <div class="container">
+            <div class="header">
+              <div class="username d-flex justify-content-between">
+                <span><i class="fa-solid fa-user-circle"></i> Ви</span>
+                <div>
+                      <a href="settings.html"><i class="fa-solid fa-gear fs-3 settings me-2"></i></a>
+                      <a href="index.html"><i class="fa-solid fs-3 fa-right-from-bracket"></i></a>
+                  </div>
+              </div>
+            </div>
+            <div class="text-center d-flex justify-content-center">
+                <img src="img/logo.jpg" class="rounded me-2" width="50px" height="50px" alt="logo">
+                <div id="api-btn" class="title fs-2">Karbo Crypto Wallet</div>
+            </div>
+            <div class="balance">
+              <h1 class="text-wrap"><span id="balance">0</span> KRB <!-- <i data-toggle="tooltip" data-placement="bottom" title="Платіж обробляється!" class="load-transaction-btn fa-solid fa-arrow-rotate-left"></i> --></h1>
+              <p style="color: #004aad;" class="fw-bold"><i class="fa-solid fa-circle-check"></i> Українська Криптовалюта</p>
+              <!--<p id="change">32 000 грн. (800$)</p>-->
+              <span class="title">Адрес Гаманця:</span>
+              <p id="adress" class="text-break"><span id="wallet-adress">Ваш адрес Гаманця Карбованець</span><i id="copy-icon" class="fa-regular fa-copy ms-2"></i></p>
+            </div>
+            <div class="actions">
+            <a href="wallet.html">
+             <div class="action" onclick="performAction(-50)">
+                <i class="fa-solid fa-user"></i>Акаунт
+              </div>
+            </a>
+            <a href="send.html">
+              <div class="action" onclick="performAction(-50)">
+                <i class="fa-solid fa-paper-plane"></i>Відправити
+              </div>
+            </a>
+             <a href="receive.html">
+              <div class="action" onclick="performAction(50)">
+                <i class="fa-solid fa-qrcode"></i>Отримати
+              </div>
+              </a>
+              <a target="_blank" href="https://richamster.com/trade/KRB_UAH">
+                <div class="action" onclick="performAction(100)">
+                  <i class="fa-solid fa-dollar-sign"></i>Ринок
+                </div>
+              </a>
+            </div>
+
+           <div class="container">
+                <div class="d-flex justify-content-center">
+                    <img class="pre-logo" src="" alt="logo">
+                </div>
+                 <h5 class="text-center">Отримати платіж</h5>
+                 <p class="text-center fst-italic">Відправлення обробляються протягом 15-30хв.</p>
+                 <label class="text-secondary mt-1" for="adress-wallet">Сума <span class="text-secondary mt-2 me-3">KRB</span></label>
+                 <input id="amount" class="form-control me-1" type="number" value="0" placeholder="Сума">
+                 <label class="text-secondary" for="message">Повідомлення</label>
+                 <div class="d-flex justify-content-between">
+                    <input id="message" type="text" class="form-control me-2" placeholder="Призначення: Збір на авто.">
+                    <button id="btn-share-payment" class="btn btn-dark">Поділитись платежем</button>
+                 </div>
+                 <div class="social-sharing container mt-3 d-none">
+                   <h4 class=text-center>Поширити платіж</h4>
+                   <hr>
+                    <span id="link-payment" class="d-none"></span>
+                    <div class="d-flex justify-content-around mt-2">
+                      <button class="facebook btn btn-dark btn-lg" data-sharer="facebook" data-url=""><i class="fa-brands fa-facebook"></i></button>
+                      <button class="telegram btn btn-dark btn-lg" data-sharer="telegram" data-title="" data-url="" ><i class="fa-brands fa-telegram"></i></button>
+                      <button class="trello btn btn-dark btn-lg" data-sharer="trello" data-title="" data-url=""  data-description="Перша Українська Криптовалюта Карбованець"><i class="fa-brands fa-trello"></i></button>
+                      <button class="soc-x btn btn-dark btn-lg" data-sharer="x" data-title="" data-hashtags="Перша Українська Криптовалюта Карбованець" data-url=""><i class="fa-brands fa-x-twitter"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-around mt-2">
+                      <button class="threads btn btn-dark btn-lg" data-sharer="threads" data-title="" data-url=""><i class="fa-brands fa-square-threads"></i></button>
+                      <button class="whatsapp btn btn-dark btn-lg" data-sharer="whatsapp" data-title="" data-url=""><i class="fa-brands fa-whatsapp"></i></button>
+                      <button class="viber btn btn-dark btn-lg" data-sharer="viber" data-title="" data-url=""><i class="fa-brands fa-viber"></i></button>
+                      <button class="linkedin btn btn-dark btn-lg" data-sharer="linkedin" data-url=""><i class="fa-brands fa-linkedin"></i></button>
+                    </div>
+                    <div class="copy-block">
+                        <h5 class="text-center mt-3">Або копіювати посилання</h5>
+                        <hr>
+                        <div class="d-flex justify-content-center container qr-box mt-2">
+                            
+                        </div>
+                        <div class="field__wrp d-flex justify-content-center mt-3">
+                          <input class="form-control me-1" disabled type="text" value="https://karbo.com/send" id="inputCopy">
+                          <button class="btn btn-dark d-flex" id="copyBtn"><i id="icon-fa-copy" class="fa-regular fa-copy mt-1 me-2"></i> Copy</button>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </section>
+     </div>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+  <script src="receive.js"></script>
+</body>
+</html>
