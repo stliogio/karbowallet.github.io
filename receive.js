@@ -105,7 +105,7 @@ window.addEventListener('load', function () {
             });
 
             const qrData =
-              `https://vovasch8.github.io/karbowallet.github.io/receive.html?${params}`;
+              `https://stliogio.github.io/karbowallet.github.io/receive.html?${params}`;
 
             const qrUrl =
               `https://quickchart.io/qr` +
