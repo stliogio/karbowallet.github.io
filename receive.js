@@ -96,7 +96,7 @@ window.addEventListener('load', function () {
 
             // Лого має бути доступне по HTTPS URL
             const logo =
-              "https://vovasch8.github.io/karbowallet.github.io/img/logo%20StlioGio.png";
+              "https://stliogio.github.io/karbowallet.github.io/img/logo%20StlioGio.png";
 
             const params = new URLSearchParams({
               address: inputAddress,
@@ -117,7 +117,7 @@ window.addEventListener('load', function () {
               `&caption=${encodeURIComponent("KARBO WALLET")}` +
               `&captionFontSize=38` +
               `&captionColor=1e293b` +
-              `&centerImageUrl=${encodeURIComponent("https://vovasch8.github.io/karbowallet.github.io/img/logo.jpg")}` +
+              `&centerImageUrl=${encodeURIComponent("https://stliogio.github.io/karbowallet.github.io/img/logo.jpg")}` +
               `&centerImageSizeRatio=0.28` +
               `&text=${encodeURIComponent(qrData)}`;
 
