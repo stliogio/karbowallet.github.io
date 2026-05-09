@@ -120,14 +120,22 @@ window.addEventListener('load', function () {
 
                 document.querySelector("#inputCopy").value = longUrl;
                 
-                document.querySelector(".facebook").setAttribute("data-url", receiveUrl);
-                document.querySelector(".telegram").setAttribute("data-url", receiveUrl);
-                document.querySelector(".trello").setAttribute("data-url", receiveUrl);
-                document.querySelector(".soc-x").setAttribute("data-url", receiveUrl);
-                document.querySelector(".threads").setAttribute("data-url", receiveUrl);
-                document.querySelector(".whatsapp").setAttribute("data-url", receiveUrl);
-                document.querySelector(".viber").setAttribute("data-url", receiveUrl);
-                document.querySelector(".linkedin").setAttribute("data-url", receiveUrl);
+                document.querySelector(".facebook").setAttribute("data-url", longUrl);
+                document.querySelector(".facebook").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".telegram").setAttribute("data-url", longUrl);
+                document.querySelector(".telegram").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".trello").setAttribute("data-url", longUrl);
+                document.querySelector(".trello").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".soc-x").setAttribute("data-url", longUrl);
+                document.querySelector(".soc-x").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".threads").setAttribute("data-url", longUrl);
+                document.querySelector(".threads").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".whatsapp").setAttribute("data-url", longUrl);
+                document.querySelector(".whatsapp").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".viber").setAttribute("data-url", longUrl);
+                document.querySelector(".viber").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                document.querySelector(".linkedin").setAttribute("data-url", longUrl);
+                document.querySelector(".linkedin").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
                 
             }
 
@@ -158,10 +166,31 @@ window.addEventListener('load', function () {
               `&centerImageSizeRatio=0.28` +
               `&text=${encodeURIComponent(qrData)}`;
 
-            document.querySelector(".qr-box").innerHTML =
-              `<img class="pre-logo"
-                    src="${qrUrl}"
-                    alt="qr">`;
+            document.querySelector("#qr-image").src = qrUrl;
+
+            document.getElementById("download-qr").addEventListener("click", async function () {
+
+                const imageUrl = document.getElementById("qr-image").src;
+
+                const response = await fetch(imageUrl);
+
+                const blob = await response.blob();
+
+                const blobUrl = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+
+                a.href = blobUrl;
+                a.download = "pay-qr.jpg";
+
+                document.body.appendChild(a);
+
+                a.click();
+
+                a.remove();
+
+                URL.revokeObjectURL(blobUrl);
+            });
             
             document.querySelector(".social-sharing").classList.remove("d-none");
         });

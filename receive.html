@@ -86,23 +86,30 @@
                    <hr>
                     <span id="link-payment" class="d-none"></span>
                     <div class="d-flex justify-content-around mt-2">
-                      <button class="facebook btn btn-dark btn-lg" data-sharer="facebook" data-url=""><i class="fa-brands fa-facebook"></i></button>
-                      <button class="telegram btn btn-dark btn-lg" data-sharer="telegram" data-title="" data-url="" ><i class="fa-brands fa-telegram"></i></button>
-                      <button class="trello btn btn-dark btn-lg" data-sharer="trello" data-title="" data-url=""  data-description="Перша Українська Криптовалюта Карбованець"><i class="fa-brands fa-trello"></i></button>
-                      <button class="soc-x btn btn-dark btn-lg" data-sharer="x" data-title="" data-hashtags="Перша Українська Криптовалюта Карбованець" data-url=""><i class="fa-brands fa-x-twitter"></i></button>
+                      <button class="facebook btn btn-dark btn-lg" data-sharer="facebook" data-url="" data-title="Платіж Українською Криптовалютою Карбованець"><i class="fa-brands fa-facebook"></i></button>
+                      <button class="telegram btn btn-dark btn-lg" data-sharer="telegram" data-url=""><i class="fa-brands fa-telegram"></i></button>
+                      <button class="trello btn btn-dark btn-lg" data-sharer="trello" data-title="Платіж Українською Криптовалютою Карбованець" data-url=""><i class="fa-brands fa-trello"></i></button>
+                      <button class="soc-x btn btn-dark btn-lg" data-sharer="x" data-title="Платіж Українською Криптовалютою Карбованець" data-url=""><i class="fa-brands fa-x-twitter"></i></button>
                     </div>
                     <div class="d-flex justify-content-around mt-2">
-                      <button class="threads btn btn-dark btn-lg" data-sharer="threads" data-title="" data-url=""><i class="fa-brands fa-square-threads"></i></button>
-                      <button class="whatsapp btn btn-dark btn-lg" data-sharer="whatsapp" data-title="" data-url=""><i class="fa-brands fa-whatsapp"></i></button>
-                      <button class="viber btn btn-dark btn-lg" data-sharer="viber" data-title="" data-url=""><i class="fa-brands fa-viber"></i></button>
-                      <button class="linkedin btn btn-dark btn-lg" data-sharer="linkedin" data-url=""><i class="fa-brands fa-linkedin"></i></button>
+                      <button class="threads btn btn-dark btn-lg" data-sharer="threads" data-title="Платіж Українською Криптовалютою Карбованець" data-url=""><i class="fa-brands fa-square-threads"></i></button>
+                      <button class="whatsapp btn btn-dark btn-lg" data-sharer="whatsapp" data-title="Платіж Українською Криптовалютою Карбованець" data-url=""><i class="fa-brands fa-whatsapp"></i></button>
+                      <button class="viber btn btn-dark btn-lg" data-sharer="viber" data-title="Платіж Українською Криптовалютою Карбованець" data-url=""><i class="fa-brands fa-viber"></i></button>
+                      <button class="linkedin btn btn-dark btn-lg" data-sharer="linkedin" data-title="Платіж Українською Криптовалютою Карбованець" data-url""><i class="fa-brands fa-linkedin"></i></button>
                     </div>
-                    <div class="copy-block">
-                        <h5 class="text-center mt-3">Або копіювати посилання</h5>
+                    <div class="qr-download-block">
+                      <h4 class="text-center mt-3">Завантажити QR</h4>
                         <hr>
                         <div class="d-flex justify-content-center container qr-box mt-2">
-                            
+                            <img class="pre-logo" id="qr-image" src="" alt="qr">
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <a id="download-qr" href="#" class="btn btn-dark mt-2"><i class="fa-solid fa-angles-down"></i> Завантажити</a>
+                        </div>  
+                    </div>
+                    <div class="copy-block">
+                        <h4 class="text-center mt-3">Копіювати посилання</h4>
+                        <hr>
                         <div class="field__wrp d-flex justify-content-center mt-3">
                           <input class="form-control me-1" disabled type="text" value="https://karbo.com/send" id="inputCopy">
                           <button class="btn btn-dark d-flex" id="copyBtn"><i id="icon-fa-copy" class="fa-regular fa-copy mt-1 me-2"></i> Copy</button>
