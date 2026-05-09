@@ -103,6 +103,7 @@ window.addEventListener('load', function () {
         
         // Show sharing information
         document.querySelector("#btn-share-payment").addEventListener("click", function() {
+          if (document.querySelector("#amount").value > 0 && document.querySelector("#message").value.length) {
             // Get payment Id
             const xhr4 = new XMLHttpRequest();
             var paymentId = "";
@@ -181,7 +182,12 @@ window.addEventListener('load', function () {
                 const a = document.createElement("a");
 
                 a.href = blobUrl;
-                a.download = "pay-qr.jpg";
+              
+                if (document.querySelector("#message").value.length) {
+                  a.download = document.querySelector("#message").value + ".jpg";
+                } else {
+                  a.download = "pay-qr.jpg";
+                }
 
                 document.body.appendChild(a);
 
@@ -193,6 +199,7 @@ window.addEventListener('load', function () {
             });
             
             document.querySelector(".social-sharing").classList.remove("d-none");
+            }
         });
     } else {
         window.location.href = "index.html";
