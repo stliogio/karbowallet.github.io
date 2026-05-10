@@ -119,25 +119,38 @@ window.addEventListener('load', function () {
                   `&amount=${encodeURIComponent(inputAmount)}` +
                   `&label=${encodeURIComponent(InputLabel)}`;
 
-                document.querySelector("#inputCopy").value = longUrl;
-                
-                document.querySelector(".facebook").setAttribute("data-url", longUrl);
-                document.querySelector(".facebook").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".telegram").setAttribute("data-url", longUrl);
-                document.querySelector(".telegram").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".trello").setAttribute("data-url", longUrl);
-                document.querySelector(".trello").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".soc-x").setAttribute("data-url", longUrl);
-                document.querySelector(".soc-x").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".threads").setAttribute("data-url", longUrl);
-                document.querySelector(".threads").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".whatsapp").setAttribute("data-url", longUrl);
-                document.querySelector(".whatsapp").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".viber").setAttribute("data-url", longUrl);
-                document.querySelector(".viber").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                document.querySelector(".linkedin").setAttribute("data-url", longUrl);
-                document.querySelector(".linkedin").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                
+                const xhr12 = new XMLHttpRequest();
+
+                xhr12.open(
+                  "GET",
+                  "https://is.gd/create.php?format=simple&url=" +
+                  encodeURIComponent(longUrl),
+                  true
+                );
+                xhr12.onload = function () {
+                  if (xhr12.status === 200) {
+                    const shortURL = xhr.responseText;
+                    console.log(shortURL);
+                    document.querySelector("#inputCopy").value = shortURL;
+                    document.querySelector(".facebook").setAttribute("data-url", shortURL);
+                    document.querySelector(".facebook").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".telegram").setAttribute("data-url", shortURL);
+                    document.querySelector(".telegram").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".trello").setAttribute("data-url", shortURL);
+                    document.querySelector(".trello").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".soc-x").setAttribute("data-url", shortURL);
+                    document.querySelector(".soc-x").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".threads").setAttribute("data-url", shortURL);
+                    document.querySelector(".threads").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".whatsapp").setAttribute("data-url", shortURL);
+                    document.querySelector(".whatsapp").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".viber").setAttribute("data-url", shortURL);
+                    document.querySelector(".viber").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                    document.querySelector(".linkedin").setAttribute("data-url", shortURL);
+                    document.querySelector(".linkedin").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
+                  } 
+                };
+                xhr12.send();
             }
 
             // Лого має бути доступне по HTTPS URL
