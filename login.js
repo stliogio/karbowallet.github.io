@@ -4,6 +4,9 @@ window.addEventListener('load', function () {
         sessionStorage.removeItem('x_auth_session');
     }
     
+    const queryString = window.location.href.split('?')[1] || '';
+    const urlParams = new URLSearchParams(queryString);
+    
     document.querySelector("#login-btn").addEventListener("click", function() {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "https://workerbalance.vovasch8.workers.dev/user/login", true);
@@ -14,7 +17,11 @@ window.addEventListener('load', function () {
             // ⬇️ ОСЬ ВОНА
             if (res.x_auth_session) {
                 sessionStorage.setItem("x_auth_session", res.x_auth_session);
-                window.location.href = "wallet.html";
+                if (urlParams.has('purl')) {
+                    window.location.href = urlParams.get('purl');  
+                } else {
+                    window.location.href = "wallet.html";
+                }
             } else {
                 document.querySelector(".message-box").textContent = "Не вірні дані!";
             }

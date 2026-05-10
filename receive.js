@@ -123,14 +123,14 @@ window.addEventListener('load', function () {
 
                 xhr12.open(
                   "GET",
-                  "https://is.gd/create.php?format=simple&url=" +
+                  "https://workerbalance.vovasch8.workers.dev/short/url?url=" +
                   encodeURIComponent(longUrl),
                   true
                 );
                 xhr12.onload = function () {
                   if (xhr12.status === 200) {
-                    const shortURL = xhr.responseText;
-                    console.log(shortURL);
+                    const response_xhr12 = JSON.parse(xhr12.responseText);
+                    const shortURL = response_xhr12.short_url;
                     document.querySelector("#inputCopy").value = shortURL;
                     document.querySelector(".facebook").setAttribute("data-url", shortURL);
                     document.querySelector(".facebook").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
@@ -148,23 +148,12 @@ window.addEventListener('load', function () {
                     document.querySelector(".viber").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
                     document.querySelector(".linkedin").setAttribute("data-url", shortURL);
                     document.querySelector(".linkedin").setAttribute("data-title", "Платіж Українською Криптовалютою Karbo: " + inputAmount + " KRB | Призначення: " + InputLabel);
-                  } 
-                };
-                xhr12.send();
-            }
-
-            // Лого має бути доступне по HTTPS URL
+                  
+                    // Лого має бути доступне по HTTPS URL
             const logo =
               "https://stliogio.github.io/karbowallet.github.io/img/logo%20StlioGio.png";
 
-            const params = new URLSearchParams({
-              address: inputAddress,
-              amount: inputAmount,
-              label: InputLabel
-            });
-
-            const qrData =
-              `https://stliogio.github.io/karbowallet.github.io/receive.html?${params}`;
+            const qrData = shortURL;
 
             const qrUrl =
               `https://quickchart.io/qr` +
@@ -177,7 +166,7 @@ window.addEventListener('load', function () {
               `&captionFontSize=38` +
               `&captionColor=1e293b` +
               `&centerImageUrl=${encodeURIComponent("https://stliogio.github.io/karbowallet.github.io/img/logo.jpg")}` +
-              `&centerImageSizeRatio=0.28` +
+              `&centerImageSizeRatio=0.25` +
               `&text=${encodeURIComponent(qrData)}`;
 
             document.querySelector("#qr-image").src = qrUrl;
@@ -210,6 +199,10 @@ window.addEventListener('load', function () {
 
                 URL.revokeObjectURL(blobUrl);
             });
+                  } 
+                };
+                xhr12.send();
+            }
             
             document.querySelector(".social-sharing").classList.remove("d-none");
             }
