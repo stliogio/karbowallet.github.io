@@ -144,8 +144,7 @@ window.addEventListener('load', function () {
             }
         });
     } else {
-      console.log("index.html?purl=" + window.location.href);
-        //window.location.href = "index.html?purl=" + window.location.href;
+        window.location.href = "index.html?purl=" + encodeURIComponent(window.location.href);
     }
   
 });
