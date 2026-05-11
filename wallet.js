@@ -116,10 +116,6 @@ window.addEventListener('load', function () {
         xhr4.onload = () => {
           resTransactions = JSON.parse(xhr4.responseText);
           
-          // Load transactions
-          putTransactions(resTransactions, countClicks);
-          countClicks++;
-          
           // Month payments
           let thisMonth = new Date().getMonth();
           var access = false;
@@ -173,15 +169,7 @@ window.addEventListener('load', function () {
               xhr6.send(); 
             });
           }
-        };
-        xhr4.send();
-      
-        document.querySelector("#arrow-load-transactions").addEventListener("click", function() {
-          if (resTransactions) {
-            putTransactions(resTransactions, countClicks);
-            countClicks++;
-          }
-        });
+        // Month payments    
       
       // Reload balance
         document.querySelector(".r-balance").addEventListener("click", function() {
@@ -211,6 +199,19 @@ window.addEventListener('load', function () {
           });
         });
         // Reload balance
+          
+          // Load transactions
+          putTransactions(resTransactions, countClicks);
+          countClicks++;
+        };
+        xhr4.send();
+      
+        document.querySelector("#arrow-load-transactions").addEventListener("click", function() {
+          if (resTransactions) {
+            putTransactions(resTransactions, countClicks);
+            countClicks++;
+          }
+        });
     } else {
         window.location.href = "index.html";
     }

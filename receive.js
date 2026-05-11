@@ -2,6 +2,9 @@ window.addEventListener('load', function () {
   
     // Preloader
     const loader = document.getElementById("preloader");
+    const commision = 50;
+    const platformCommision = 1;
+    const commisionWalletAddress = "KiE8uyEJKq55gzrxwHX8LF8bYX3cAxU41e11UDUSotTcJme2oUX7uaA85SKe2k7ZFaLQbfaRJjfz5Fz7ZSu8vjkJ3L8XhFo";
     setTimeout(() => {
     loader.classList.add("hidden");
     loader.remove();
@@ -207,6 +210,101 @@ window.addEventListener('load', function () {
             document.querySelector(".social-sharing").classList.remove("d-none");
             }
         });
+      
+      // Get transactions
+        const xhr15 = new XMLHttpRequest();
+        var resTransactions = "";
+        xhr15.open("GET", "https://workerbalance.vovasch8.workers.dev/wallet/transactions", true);
+        xhr15.setRequestHeader("X-Auth-Session", x_auth_session);
+        xhr15.onload = () => {
+          resTransactions = JSON.parse(xhr15.responseText);
+          
+          // Month payments
+          let thisMonth = new Date().getMonth();
+          var access = false;
+          resTransactions.forEach((tr, index) => {
+          const dateTimeTr = tr.time;
+          const dateTr = new Date(dateTimeTr);
+          if ((tr.blockIndex === -1 && (-tr.amount / 1000000000000) >= commision) || (dateTr.getMonth() === thisMonth && tr.address === commisionWalletAddress && (-tr.amount / 1000000000000) >= commision )) {
+              access = true;
+              document.querySelector(".actions").classList.remove("disabled-div");
+              document.querySelector(".receive-block").classList.remove("disabled-div");
+              document.querySelector(".monthPayBlock").classList.add("d-none");
+          } 
+          });
+          
+          if (!access && parseInt(document.querySelector("#balance").textContent) < commision + platformCommision) {
+            document.querySelector(".btn-pay").classList.add("disabled-div");   
+          } else if (!access) {
+            document.querySelector(".btn-pay").addEventListener("click", function() {
+              
+              // Get payment Id
+              const xhr6 = new XMLHttpRequest();
+              var paymentId = "";
+              xhr6.open("GET", "https://workerbalance.vovasch8.workers.dev/wallet/paymentId", true);
+              xhr6.setRequestHeader("X-Auth-Session", x_auth_session);
+              xhr6.onload = () => {
+                  const resPaymentId = JSON.parse(xhr6.responseText);
+                  paymentId = resPaymentId.paymentId;  
+                
+                const xhr5 = new XMLHttpRequest();
+                var amount = 0;
+                xhr5.open("POST", "https://workerbalance.vovasch8.workers.dev/wallet/send", true);
+                xhr5.setRequestHeader("Content-Type", "application/json");
+                xhr5.setRequestHeader("X-Auth-Session", x_auth_session);
+                xhr5.onload = function () {
+                  if (xhr5.status >= 200 && xhr5.status < 300) {
+                    document.querySelector(".pay-message").style = "block";
+                    document.querySelector(".pay-message").innerHTML = "<span class='text-success'>Підтвердіть платіж на email!</span>";
+                    //window.location.reload();
+                  } else {
+                    console.log("Помилка:", xhr5.status);
+                  }
+                };
+                var data = {
+                address: commisionWalletAddress,
+                allAvailableBalance: false,
+                amount: commision * 1000000000000,
+                paymentId: paymentId
+                };
+                xhr5.send(JSON.stringify(data));
+              };
+              xhr6.send(); 
+            });
+          }
+    // Month payments
+  
+    // Reload balance
+        document.querySelector(".r-balance").addEventListener("click", function() {
+            const element = document.querySelector('.r-balance');
+
+            reloadBalance(x_auth_session);
+            element.animate([
+              { transform: 'rotate(0deg)' },
+              { transform: 'rotate(360deg)' }
+            ], {
+              duration: 1000,     // 2 seconds
+              iterations: 2, // Loop 2
+              easing: 'linear'    // Constant speed
+            });
+          
+          let reloadThisMonth = new Date().getMonth();
+          var reloadAccess = false;
+          resTransactions.forEach((tr, index) => {
+          const reloadDateTimeTr = tr.time;
+          const reloadDateTr = new Date(reloadDateTimeTr);
+          if ((tr.blockIndex === -1 && (-tr.amount / 1000000000000) >= commision) ||  (reloadDateTr.getMonth() === reloadThisMonth && tr.address === commisionWalletAddress && (-tr.amount / 1000000000000) >= commision )) {
+              access = true;
+              document.querySelector(".actions").classList.remove("disabled-div");
+              document.querySelector(".send-block").classList.remove("disabled-div");
+              document.querySelector(".monthPayBlock").classList.add("d-none");
+          }
+          });
+        });
+        // Reload balance
+          
+        };
+        xhr15.send();
     } else {
         window.location.href = "index.html";
     }
